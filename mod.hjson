@@ -14,7 +14,7 @@ main: "advtech.AdvTechMod"
 description: "My first Java mod! This mod adds new technology and a sector."
 
 #the mod version
-version: v1.4-test
+version: v1.5-test
 
 #the minimum game build required to run this mod
 minGameVersion: 158
