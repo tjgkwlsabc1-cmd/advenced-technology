@@ -14,11 +14,11 @@ main: "advtech.AdvTechMod"
 description: "My first Java mod! This mod adds new technology and a sector."
 
 #the mod version
-version: v1.6-test
+version: v1.7-test
 
 #the minimum game build required to run this mod
 minGameVersion: 158
 
 #this is a java mod
 java: true
-main: advtech.AdvancedTechnologyMod
+main: advtech.AdvTechMod
