@@ -32,11 +32,21 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew jar
 
+      - name: Locate mod JAR
+        run: |
+          set -e
+          mkdir -p release
+          jar_path=$(find . -type f -name "*.jar" ! -path "./gradle/wrapper/*" ! -path "./release/*" | head -n 1)
+          test -n "$jar_path"
+          echo "Using JAR: $jar_path"
+          cp "$jar_path" release/
+          ls -lah release
+
       - name: Upload JAR to Release
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.release.tag_name }}
-          files: build/libs/*.jar
+          files: release/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
