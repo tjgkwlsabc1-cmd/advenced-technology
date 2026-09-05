@@ -1,6 +1,7 @@
 package advtech;
 
 import mindustry.type.*;
+import mindustry.entities.bullet.BulletType;
 import mindustry.world.*;
 import mindustry.world.blocks.production.Drill;
 import mindustry.content.Blocks;
@@ -29,6 +30,8 @@ public class AdvTechContent {
     public static Block steamPress;
     public static Block platedPump;
     public static Block mechanicalAirPump;
+    public static BulletType lightMissile;
+    public static UnitType lightUnit;
 
     public static void load() {
         // Custom Resource: Lead-Copper Plate
@@ -274,6 +277,12 @@ public class AdvTechContent {
         };
         mechanicalAirPump.stats.add(new mindustry.world.meta.Stat("pressure-increase", mindustry.world.meta.StatCat.liquids), "+10");
         mechanicalAirPump.stats.add(new mindustry.world.meta.Stat("pipeline-limit", mindustry.world.meta.StatCat.liquids), "15");
+
+        // Light Missile
+        lightMissile = new LightMissile();
+
+        // Light Unit
+        lightUnit = new Light();
     }
 
     private static Block createPressureConduit(String name, String vanillaName, float minPressure, float maxPressure, float speedIncrease) {
@@ -281,21 +290,14 @@ public class AdvTechContent {
             @Override
             public void load() {
                 super.load();
-                Conduit source = vanillaName.equals("pulse-conduit") ? (Conduit)Blocks.pulseConduit : (Conduit)Blocks.conduit;
-                if (source.topRegions != null) {
-                    if (topRegions == null || topRegions.length != source.topRegions.length) {
-                        topRegions = new arc.graphics.g2d.TextureRegion[source.topRegions.length];
-                    }
-                    java.lang.System.arraycopy(source.topRegions, 0, topRegions, 0, source.topRegions.length);
+                region = arc.Core.atlas.find(vanillaName);
+                capRegion = arc.Core.atlas.find(vanillaName + "-cap");
+                topRegions = new arc.graphics.g2d.TextureRegion[5];
+                botRegions = new arc.graphics.g2d.TextureRegion[5];
+                for (int i = 0; i < 5; i++) {
+                    topRegions[i] = arc.Core.atlas.find(vanillaName + "-top-" + i);
+                    botRegions[i] = arc.Core.atlas.find(vanillaName + "-bottom-" + i);
                 }
-                if (source.botRegions != null) {
-                    if (botRegions == null || botRegions.length != source.botRegions.length) {
-                        botRegions = new arc.graphics.g2d.TextureRegion[source.botRegions.length];
-                    }
-                    java.lang.System.arraycopy(source.botRegions, 0, botRegions, 0, source.botRegions.length);
-                }
-                if (source.capRegion != null) capRegion = source.capRegion;
-                if (source.region != null) region = source.region;
             }
         };
     }
