@@ -5,11 +5,10 @@ displayName: "Advanced Technology"
 name: "advenced-technology"
 
 #your name
-author: "[aba4f]Wind[afabf1]sw[aaafff]ept"
+author: "[#aba4f]Wind[#afabf1]sw[#aaafff]ept"
 
 #the fully qualified main class of the mod
-main: advtech.AdvancedTechnologyMod
-
+main: advtech.AdvTechMod
 #the mod description as seen in the mod dialog
 description: "My first Java mod! This mod adds new technology and a sector."
 
