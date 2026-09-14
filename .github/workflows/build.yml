@@ -36,7 +36,11 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build mod (desktop + Android)
-        run: ./gradlew deploy
+        run: ./gradlew deploy --no-daemon
+
+      - name: Stop any lingering Gradle daemons
+        if: always()
+        run: ./gradlew --stop
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
