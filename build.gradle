@@ -1,9 +1,7 @@
 // 1. Gradle 빌드 엔진에 유저님의 진짜 Java 25 경로를 최우선으로 강제 주입합니다.
-System.setProperty("org.gradle.java.home", "C:/Program Files/Eclipse Adoptium/jdk-25.0.3.9-hotspot")
 
 apply plugin: "java"
 
-buildDir = file("C:/MindustryBuild/MindustryJavaModTemplate-master")
 
 sourceSets.main.java.srcDirs = ["src"]
 
